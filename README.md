@@ -22,4 +22,4 @@ The directories are:
  - `05_appendix.Rmd`: appendix section (sensitivity analysis, comparison to Watson et. al.)
  - `_bookdown.yml`: [optional build settings](https://bookdown.org/yihui/rmarkdown/bookdown-project.html#bookdown.yml)
  - `_output.yml`: [specify book output formats and format-specific settings](https://bookdown.org/yihui/rmarkdown/bookdown-project.html#bookdown.yml)
- - `references.bib`: BibTex references
+ - `report.bib`: BibTex references
