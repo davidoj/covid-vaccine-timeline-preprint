@@ -12,6 +12,7 @@ References are generated using Zotero with the [Better BibTex](https://retorque.
 The directories are:
 
 `bookdown-example`: contains a minimal bookdown book example which might be a helpful reference for some purposes. It is for reference purposes only
+
 `report`: contains the Rmd files comprising the report
  - `index.Rmd`: header file for the report, including the abstract
  - `01_introduction`: introduction
