@@ -23,3 +23,5 @@ The directories are:
  - `_bookdown.yml`: [optional build settings](https://bookdown.org/yihui/rmarkdown/bookdown-project.html#bookdown.yml)
  - `_output.yml`: [specify book output formats and format-specific settings](https://bookdown.org/yihui/rmarkdown/bookdown-project.html#bookdown.yml)
  - `report.bib`: BibTex references
+
+To create a 
