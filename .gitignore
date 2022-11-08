@@ -5,3 +5,5 @@
 
 report/_book
 report/_bookdown_files
+report/_main.log
+report/search_index.json
