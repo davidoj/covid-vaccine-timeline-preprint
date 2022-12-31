@@ -1,2 +1,27 @@
+---
+output:
+  pdf_document: default
+  html_document: default
+---
 # Methods
 
+Our strategy for modelling counterfactually altered vaccination timelines was to take an existing compartmental model that simulated the COVID-19 pandemic through 2020 and 2021 including the impact of vaccinations (the "baseline model"), and re-run the simulation freezing all parameters except the vaccination timelines (the "counterfactual models").
+
+For our baseline pandemic model, we used the model behind [@watsonGlobalImpactFirst2022] (suggest: update to [@watsonoliverj.COVID19LMICReports2022] as it's much more recent and includes boosters + omicron). This is in turn based on the Squire packaged used for [@hoganWithincountryAgebasedPrioritisation2021, @walkerImpactCOVID19Strategies2020, @watsonLeveragingCommunityMortality2021] and SirCOVID packages [@baguelinSircovidSIRModel2022]. 
+
+This model has gone through many iterations, adding new parameters for new variants and increasing the sophistication of the uncertainty handling. English language documentation for the latest version is incomplete. Some documentation of the most recent parameters can be found in the [COVID-19 LMIC Reports documentation](https://web.archive.org/web/20221230232942/https://mrc-ide.github.io/global-lmic-reports/parameters.html) [@watsonoliverj.COVID19LMICReports2022]. Note that, on this page, the vaccine efficacies are attributed to the supplementary material of [@watsonGlobalImpactFirst2022], but the Omicron-specific efficacies cannot have been sourced from there as that report did not account for booster vaccinations or the Omicron strain. Furthermore, the model diagram on that page is based on a simplified version of the underlying model; the actual model along with its equations is explained in the supplementary material of [@hoganWithincountryAgebasedPrioritisation2021] or [in the Nimue documentation](https://web.archive.org/web/20221230232915/https://mrc-ide.github.io/nimue/index.html) [@winskillNimue], though both of these models are also slightly out of date (for example, they do not track different vaccine dose numbers).
+
+The baseline model is an age-stratified SIRD model with multiple infectious compartments to reflect different stages and courses of disease progression. The model also classifies people as unvaccinated, vaccinated (with 1-3 doses, before and after developing vaccine-derived immunity) and previously vaccinated. People progress through vaccination classes according to vaccination dosage data from Our World in Data [@mathieuCoronavirusPandemicCOVID192020] and according to the rate of waning of vaccine-derived immunity. Within each vaccination class, people transition between the classes according to vaccination-class specific parameters, including transitions from the $R\to S$ classes to simulating waning of naturally acquired immunity. The model accounts for separate modes of vaccine action (infection blocking vs disease blocking), variant-dependent efficacy of vaccine and naturally derived immunity, the duration of vaccine and naturally derived immunity and age-dependent vaccination strategies. 
+
+(The following refers to the newer [@watsonoliverj.COVID19LMICReports2022])
+
+The model parameters are a combination of hard coded fixed values, parameters sampled from a fixed distribution representing parameter uncertainty and parameters optimised to fit the observed data. The only optimised parameters are the sequence $R_t$, the effective reproductive number at time $t$ *without* any vaccine or naturally derived immunity. The full set of parameters are described in Table [TODO - this will probably take a while].
+
+```{r nice-tab, tidy=FALSE}
+knitr::kable(
+  'a', caption = 'Table TODO: Model parameters',
+  booktabs = TRUE
+)
+```
+
+Because $R_t$ is fit to the data, the overall course of predicted deaths usually matches the observed course quite closely (see Figure [TODO]), but the value of $R_t$ is sensitive to model misspecification and errors in other input parameters. For these reasons, holding $R_t$ fixed and varying other parameters -- as we do with vaccine timelines -- may fail to produce correct counterfactuals if the values of $R_t$ are influenced by incorrect parametrisation or model misspecification. Because $R_t$ is fitted after sampling vaccine efficacies against different variants, the duration of vaccine derived protection and the duration of natually acquired immunity, we are at least able to assess how sensitive our conclusions are to the specifications of these parameters [TODO: this is what I propose goes into the sensitivity analysis].

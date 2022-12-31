@@ -9,6 +9,10 @@ This repository uses the [bookdown](https://bookdown.org/yihui/rmarkdown/books.h
 
 References are generated using Zotero with the [Better BibTex](https://retorque.re/zotero-better-bibtex/) extension.
 
+To build the report, navigate to the `report` folder and run
+
+	bookdown::render_book("index.Rmd", "bookdown::pdf_book")
+
 The directories are:
 
 `bookdown-example`: contains a minimal bookdown book example which might be a helpful reference for some purposes. It is for reference purposes only
@@ -24,4 +28,3 @@ The directories are:
  - `_output.yml`: [specify book output formats and format-specific settings](https://bookdown.org/yihui/rmarkdown/bookdown-project.html#bookdown.yml)
  - `report.bib`: BibTex references
 
-To create a 
